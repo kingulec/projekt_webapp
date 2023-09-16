@@ -7,6 +7,7 @@ import NavBar from "./common/NavBar";
 import CreateAccount from "./pages/CreateAccount";
 import SearchPage from "./pages/SearchPage";
 import FavoritesPage from "./pages/FavouritesPage";
+import AccountPage from "./pages/AccountPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -52,6 +53,8 @@ function App() {
             path="/"
             element={loggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} // Przekierowanie na odpowiednią stronę w zależności od zalogowania
           />
+          <Route path="/account" element={<AccountPage loggedInUsername={loggedInUsername} />} /> 
+          
         </Routes>
       </BrowserRouter>
     </div>

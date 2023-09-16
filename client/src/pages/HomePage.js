@@ -14,15 +14,7 @@ function HomePage() {
           <Container>
             <center>
               <Row className="px-2 my-2">
-                <Col>
-                  <Panel
-                    header="Searcher"
-                    tittle="Search for books"
-                    desc="See all books"
-                    href="/search"
-                    button="Go!"
-                  />
-                </Col>
+                
                 <Col>
                   <Panel
                     header="Login"
@@ -33,7 +25,7 @@ function HomePage() {
                   />
                 </Col>
               </Row>
-            </center>
+            </center> 
           </Container>
         </div>
       </center>

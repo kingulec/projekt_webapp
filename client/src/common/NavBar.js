@@ -22,17 +22,18 @@ function NavBar({ loggedIn, loggedInUsername, handleLogout, favoritesCount }) {
             {loggedIn ? ( 
               <>
                 <NavDropdown title="Account">
-                  <NavDropdown.Item>Your Account </NavDropdown.Item>
+                  <NavDropdown.Item href="/account">Your Account </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/home/basket">Your basket</NavDropdown.Item>
+                  <NavDropdown.Item href="/favorites">Favourites</NavDropdown.Item>
                   <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="/favorites">Favorites ({favoritesCount})</Nav.Link> {/* Dodaj liczbę ulubionych książek */}
+                
               </>
             ) : (
               <>
                 <Nav.Link href="/login">Log in</Nav.Link>
                 <Nav.Link href="/login/create_account">Create account</Nav.Link>
+                
               </>
             )}
           </Nav>

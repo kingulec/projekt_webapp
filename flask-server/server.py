@@ -64,8 +64,26 @@ def create_account():
 
     new_user = User(id_czytelnik, login,password, email, phone, birth_date)
     new_user.add_user(cursor, connection)
-    
+
     return make_response(jsonify({"message": "Account created successfully"}), 201)
+
+
+@app.route("/account", methods=["GET"])
+def get_account_info(username):
+    query = "SELECT * FROM Czytelnicy WHERE Czytelnicy.login = ?"
+    cursor.execute(query, (username))
+    user_data = cursor.fetchone()
+    
+    if user_data:
+        user_info = {
+            "username": user_data.login,
+            "email": user_data.email,
+            "phone": user_data.telefon,
+            
+        }
+        return jsonify(user_info)
+    else:
+        return make_response(jsonify({"message": "User not found"}), 404)
 
 if __name__ == '__main__':
     app.run(debug=True)

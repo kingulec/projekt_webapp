@@ -1,37 +1,33 @@
+// AccountPage.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function UserProfile({ loggedInUsername }) {
+function AccountPage({ loggedInUsername }) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`http://127.0.0.1:5000/user/${loggedInUsername}`);
+    axios.get(`http://127.0.0.1:5000/account`)
+      .then((response) => {
         setUserData(response.data);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error fetching user data:", error);
-      }
-    };
-
-    if (loggedInUsername) {
-      fetchUserData();
-    }
+      });
   }, [loggedInUsername]);
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return <p>Loading user data...</p>;
   }
 
   return (
     <div>
-      <h1>User Profile</h1>
-      <p><strong>Username:</strong> {userData.login}</p>
-      <p><strong>Email:</strong> {userData.email}</p>
-      <p><strong>Phone:</strong> {userData.phone}</p>
-      <p><strong>Birth Date:</strong> {userData.birth_date}</p>
+      <h1>Your Account</h1>
+      <p>Username: {userData.username}</p>
+      <p>Email: {userData.email}</p>
+      <p>Phone: {userData.phone}</p>
+     
     </div>
   );
 }
 
-export default UserProfile;
+export default AccountPage;
